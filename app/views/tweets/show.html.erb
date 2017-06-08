@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @tweet.body %>
+</p>
+
+<p>
+  <strong>Sentiment:</strong>
+  <%= @tweet.sentiment %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @tweet.score %>
+</p>
+
+<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
+<%= link_to 'Back', tweets_path %>
