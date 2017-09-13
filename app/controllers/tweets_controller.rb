@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :set_tweet, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /tweets
   # GET /tweets.json
@@ -25,7 +25,7 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
-
+     byebug
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
@@ -64,7 +64,7 @@ class TweetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @tweet = Tweet.find(params[:id]) if params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

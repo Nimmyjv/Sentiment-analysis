@@ -1,5 +1,6 @@
 class Tweet < ApplicationRecord
-  def self.sync(query)
+  def self.load(query)
+
     Tweet.destroy_all
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = 'O34WDDLpLpaCo8lqCIRUXE4K7'
@@ -9,7 +10,6 @@ class Tweet < ApplicationRecord
     end
     client.search(query).each do |tweet|
       create(body: tweet.text)
-
     end
   end
 
