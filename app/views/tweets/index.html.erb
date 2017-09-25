@@ -2,6 +2,9 @@
 
 <h1>Tweets</h1>
 
+<h2>overall score: <%= @overall_score %><h2>
+  <h2>People are <span class="sentiment"><%= @sentiment%></span> about the topic right now</h2>
+
 <table>
   <thead>
     <tr>
@@ -28,4 +31,9 @@
 
 <br>
 
-<%= link_to 'New Tweet', new_tweet_path %>
+<%= link_to 'Home page', '/homepage' %>
+<style>
+.sentiment{
+  background-color: orange;
+}
+</style>

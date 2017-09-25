@@ -5,6 +5,12 @@ class TweetsController < ApplicationController
   # GET /tweets.json
   def index
     @tweets = Tweet.all
+    scores = Tweet.all.pluck(:score).delete_if{|x| x == 0.0 }
+    @overall_score = (scores.inject(0){|sum, x| sum + x})/scores.count unless scores.count == 0.0
+    @overall_score = 0 if scores.count == 0.0
+    @sentiment = "Happy" if @overall_score > 0
+    @sentiment = "Sad" if @overall_score < 0
+    @sentiment = "Neutral"  if @overall_score == 0
   end
 
   # GET /tweets/1

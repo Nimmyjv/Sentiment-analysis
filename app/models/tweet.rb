@@ -1,5 +1,5 @@
 class Tweet < ApplicationRecord
-  def self.load(query)
+  def self.load(query, location)
 
     Tweet.destroy_all
     client = Twitter::REST::Client.new do |config|
@@ -8,8 +8,15 @@ class Tweet < ApplicationRecord
       config.access_token        = '701829520551063553-vJv9Ei5ZXdqLmj8U2FBSj6RR0423NZs'
       config.access_token_secret = 'GS4sSFMxpJxP3DcfqGwlmFmqD8FqgB2VWx6eHHOcwOmlq'
     end
-    client.search(query).each do |tweet|
-      create(body: tweet.text)
+
+    count = 30
+    client.search(query, options={geocode: location}).each do |tweet|
+      if count >= 0
+        create(body: tweet.text)
+      else
+        break
+      end
+      count = count - 1
     end
   end
 
