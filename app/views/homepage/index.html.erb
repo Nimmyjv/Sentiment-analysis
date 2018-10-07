@@ -1,0 +1,7 @@
+<h1>dashboard</h1>
+<%= form_tag 'get_tweets' do%>
+  Query string   : <%= text_field_tag 'query'%></br>
+  Search Location: <%= text_field_tag 'place'%></br>
+  <%= submit_tag 'get tweets'%>
+
+<% end %>
